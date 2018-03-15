@@ -1,0 +1,51 @@
+{% extends 'templates/base.html' %} 
+{% block style %}
+<style>
+#skills span {
+    top: -30px !important;
+    left: 2% !important;
+    position: relative !important;
+    font-size: 1.4em !important;
+    font-weight: bolder !important;
+    font-family: monospace !important;
+    color: #fff !important;
+}
+
+progress {
+    background-color: #f3f3f3 !important;
+    border: 0 !important;
+    height: 2.5em !important;
+    width: 100% !important;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #e0eaf0 !important;
+}
+
+progress::-webkit-progress-value {
+    background-color: #329ad1 !important;
+}
+
+progress::-moz-progress-bar {
+    background-color: #329ad1 !important;
+}
+</style>
+{% endblock style %}
+{% block content %}
+ <section id="skills">
+ 	{% for skill in skills %}
+ 	<progress value="{{skill.exp}}" max="100"></progress>
+ 	<span>{{skill.name}}</span>
+ 	{% endfor %}
+</section>
+{% endblock content%}
+{% block scripts%}
+   <script>
+   	$(function() {
+	  $('progress').each(function() {
+	    var max = $(this).val();
+	    $(this).val(0).animate({ value: max }, { duration: 2000, easing: 'easeOutCirc' });
+				});
+	});
+   </script>
+{% endblock scripts%}
