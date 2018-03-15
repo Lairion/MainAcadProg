@@ -1,35 +1,7 @@
 {% extends 'templates/base.html' %} 
+{%load staticfiles%}
 {% block style %}
-<style>
-#skills span {
-    top: -30px !important;
-    left: 2% !important;
-    position: relative !important;
-    font-size: 1.4em !important;
-    font-weight: bolder !important;
-    font-family: monospace !important;
-    color: #fff !important;
-}
-
-progress {
-    background-color: #f3f3f3 !important;
-    border: 0 !important;
-    height: 2.5em !important;
-    width: 100% !important;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #e0eaf0 !important;
-}
-
-progress::-webkit-progress-value {
-    background-color: #329ad1 !important;
-}
-
-progress::-moz-progress-bar {
-    background-color: #329ad1 !important;
-}
-</style>
+<link rel="stylesheet" href='{% static "skills/static/css/skills.css" %}'>
 {% endblock style %}
 {% block content %}
  <section id="skills">

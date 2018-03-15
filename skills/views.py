@@ -20,7 +20,6 @@ class SkillsViews(object):
 	def show_projects(request):
 		projects = Project.objects.all()
 		new_projects = []
-		Hello="Hello"
 		for i in range(len(projects)):
 			new_projects.append({"instance":projects[i],"result":i % 2 == 0})
 

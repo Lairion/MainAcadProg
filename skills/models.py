@@ -3,18 +3,19 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+from django.urls import reverse
 # Create your models here.
 
 class Skill(models.Model):
-	"""docstring for Skills"""
-	name = models.CharField(max_length=100)
-	exp = models.IntegerField()
-	image = models.ImageField(
-		upload_to='uploads/%Y/%m/%d/',
-		null=True,
-		blank=True)
-	def __str__(self):
-		return str(self.name)
+    """docstring for Skills"""
+    name = models.CharField(max_length=100)
+    exp = models.IntegerField()
+    image = models.ImageField(
+        upload_to='uploads/%Y/%m/%d/',
+        null=True,
+        blank=True)
+    def __str__(self):
+        return str(self.name)
 
 class Project(models.Model):
     """
@@ -25,21 +26,27 @@ class Project(models.Model):
     description = models.TextField()
     state = models.CharField(max_length=100,choices=STATE,default="FH")
     image = models.ImageField(
-		upload_to='project/%Y/%m/%d/',
-		null=True,
-		blank=True)
+        upload_to='project/%Y/%m/%d/',
+        null=True,
+        blank=True)
     members = models.ManyToManyField('Members')
     def __str__(self):
-		return str(self.name)
+        return str(self.name)
+
+    def get_url(self):
+        return reverse('skills:my_project',{id:self.id})
+        #return reverse('my_project', args=[self.id])
+
+
 
 class Members(models.Model):
-	first_name = models.CharField(max_length=100)
-	last_name = models.CharField(max_length=100)
-	def __str__(self):
-		return str(self.first_name+' '+ self.last_name)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    def __str__(self):
+        return str(self.first_name+' '+ self.last_name)
 
 
 
 
-	
+    
 
