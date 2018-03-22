@@ -34,7 +34,7 @@
                 <p>
                     {{ project.instance.description }}
                 </p>
-                <a href="{{project.get_url}}" class="btn"> button</a>
+                <a href="{{project.instance.get_url}}" class="btn"> button</a>
             </div>
         </div>
         {% else %}
@@ -56,7 +56,7 @@
                     <p>
                         {{ project.instance.description }}
                     </p>
-                    <a href="{{project.get_url}}" class="btn">button</a>
+                    <a href="{{project.instance.get_url}}" class="btn">button</a>
                 </div>
         </div>
         {% endif %} {% endfor %}

@@ -34,7 +34,7 @@ class Project(models.Model):
         return str(self.name)
 
     def get_url(self):
-        return reverse('skills:my_project',{id:self.id})
+        return reverse('skills:my_project',kwargs={'id':self.id})
         #return reverse('my_project', args=[self.id])
 
 

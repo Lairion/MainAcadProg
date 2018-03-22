@@ -10,6 +10,8 @@ class SkillsViews(object):
 	@staticmethod
 	def skills(request):
 		skills = Skill.objects.all()
+		print(request.user)
+		print(request.user.is_staff)
 		context = {
 			"title":"Skills",
 			"skills":skills
@@ -22,6 +24,7 @@ class SkillsViews(object):
 		new_projects = []
 		for i in range(len(projects)):
 			new_projects.append({"instance":projects[i],"result":i % 2 == 0})
+		print(new_projects[0]['instance'].get_url())
 
 		context ={
 			"title":"Projects",

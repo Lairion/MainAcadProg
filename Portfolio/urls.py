@@ -17,10 +17,38 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.shortcuts import render
+from django.http import HttpResponseRedirect,HttpResponse
+
+from django.contrib.auth import authenticate, login
+
+def my_auth(request):
+    username = request.POST.get('username',"user")
+    
+    password = request.POST.get('password',"....")
+    user = authenticate(request, username=username, password=password)
+
+    print(user)
+    if user is not None:
+        login(request, user)
+        return HttpResponseRedirect("/skills/")
+    else:
+        # Return an 'invalid login' error message.
+        return HttpResponseRedirect('/login/')
+
+
+def my_login(request):
+    context = {
+        'title':"Login"
+    }
+    return render(request,'templates/login.html',context)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include("skills.urls", namespace="skills")),
+    url(r'^login/', my_login),
+    url(r'^auth/', my_auth),
     #url(r'', include("skills.urls")),
 ]
 if settings.DEBUG:
