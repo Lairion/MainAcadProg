@@ -1,0 +1,19 @@
+{%extends "base.html"%}
+
+{% block content%}
+
+	<form action="/sessions_examp/" method="GET">
+		<input type="text" name="name"/>
+		<button type="submit">
+			Send
+		</button>
+	</form>
+	<ul>
+	{%for player in request.session.leadboard%}
+	
+		<li>Player:{{player.name}} | score:{{player.score}}</li>
+	
+		
+	{%endfor%}
+	</ul>
+{% endblock content%}

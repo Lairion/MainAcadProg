@@ -1,7 +1,7 @@
-{% extends 'templates/base.html' %} 
+{% extends 'base.html' %} 
 {%load staticfiles%}
 {% block style %}
-<link rel="stylesheet" href='{% static "skills/static/css/skills.css" %}'>
+<link rel="stylesheet" href='{% static "css/skills.css" %}'>
 {% endblock style %}
 {% block content %}
  <section id="skills">
@@ -16,7 +16,7 @@
    	$(function() {
 	  $('progress').each(function() {
 	    var max = $(this).val();
-	    $(this).val(0).animate({ value: max }, { duration: 2000, easing: 'easeOutCirc' });
+	    $(this).val(0).animate({ value: max }, { duration: 2000 });
 				});
 	});
    </script>

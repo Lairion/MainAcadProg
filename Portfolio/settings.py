@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'skills'
+    'skills',
+    'sign_in_up'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,11 @@ ROOT_URLCONF = 'Portfolio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR)],
+        'DIRS': [
+            os.path.join(BASE_DIR,'main_templates'),
+            os.path.join(BASE_DIR,'skills','templates'),
+            os.path.join(BASE_DIR,'sign_in_up', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,8 +128,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static","static_root")
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR),
-
+    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR,'skills','static'),
+    os.path.join(BASE_DIR,'sign_in_up','static'),
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media","media_root")

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Skill,Project
 
 # Create your views here.
@@ -16,7 +16,7 @@ class SkillsViews(object):
 			"title":"Skills",
 			"skills":skills
 			}
-		return render(request,"skills/templates/skills.html",context)
+		return render(request,"skills.html",context)
 	
 	@staticmethod
 	def show_projects(request):
@@ -31,7 +31,7 @@ class SkillsViews(object):
 			"projects": new_projects
 
 		}
-		return render(request, "skills/templates/projects.html",context)
+		return render(request, "projects.html",context)
 	@staticmethod
 	def get_project(request,id):
 		project = Project.objects.get(id=int(id))
@@ -41,6 +41,22 @@ class SkillsViews(object):
 
 		}
 		
-		return render(request, "skills/templates/project.html",context)
+		return render(request, "project.html",context)
 
+	@staticmethod
+	def form_sessions(request):
+		context = {
+			'title':'examp'
+		}
+		return render(request,"sessions_example.html",context)
 
+	@staticmethod
+	def add_sessions(request):
+		print(request.session['some_text'])
+		leadboard = request.session.get("leadboard",[])
+		leadboard += [{'name':request.GET.get("name",""),"score":0}]
+		request.session.update({"leadboard":leadboard})
+
+		return redirect("skills:form")
+
+[{'name':'peter',"score":0}] + [{'name':'peter',"score":0}] == [{'name':'peter',"score":0},{'name':'peter',"score":0}] 
